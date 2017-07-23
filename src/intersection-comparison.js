@@ -1,4 +1,8 @@
 /**
+ * @author yewmint
+ */
+
+/**
  * create random point in 50x50
  * @return {object} point
  */
@@ -157,6 +161,26 @@ const exclude = function (lnA, lnB){
 }
 
 /**
+ * combined function to derive intersection
+ * @param {object} lnA line A
+ * @param {object} lnB line B
+ * @return {object}
+ */
+const combine = function (lnA, lnB){
+  (!exclude(lnA, lnB)) && straddle(lnA, lnB) && intersect(lnA, lnB)
+}
+
+/**
+ * another combined function to derive intersection
+ * @param {object} lnA line A
+ * @param {object} lnB line B
+ * @return {object}
+ */
+const combineB = function (lnA, lnB){
+  straddle(lnA, lnB) && intersect(lnA, lnB)
+}
+
+/**
  * test a function with lines
  * @param {function} func function to be tested
  * @param {object[]} lines lines for testing
@@ -181,6 +205,8 @@ const test = function (){
   testFunc(exclude, lines)
   testFunc(straddle, lines)
   testFunc(intersect, lines)
+  testFunc(combine, lines)
+  testFunc(combineB, lines)
 }
 
 test()
